@@ -2,7 +2,12 @@ import { useQuery } from "react-query";
 import api from "../services/api";
 import { Character } from "../types";
 
-const fetchCharacters = async (page?: number, search?: string): Promise<Character[]> => {
+interface ICharactersParams {
+  page?: number;
+  search?: string;
+}
+
+const fetchCharacters = async ({ page, search }: ICharactersParams): Promise<Character[]> => {
   const response = await api.get("/people", {
     params: {
       page,
@@ -17,8 +22,8 @@ const fetchCharacter = async (id: string): Promise<Character> => {
   return response.data;
 };
 
-export const useCharactersQuery = (page?: number, search?: string) => {
-  return useQuery(["character", search, page], () => fetchCharacters(page, search));
+export const useCharactersQuery = ({ page, search }: ICharactersParams) => {
+  return useQuery(["character", search, page], () => fetchCharacters({ page, search }));
 };
 
 export const useCharacterQuery = (id: string) => {

@@ -10,7 +10,7 @@ export const useCharacters = ({ currentPage, searchQuery }: any) => {
   const characters = useSelector((state: any) => state.characters.characters);
 
   const search = useDebounce(searchQuery, 500);
-  const { data, isSuccess, isLoading } = useCharactersQuery(currentPage, search);
+  const { data, isSuccess, isLoading } = useCharactersQuery({ page: currentPage, search });
 
   useEffect(() => {
     if (isSuccess) {
