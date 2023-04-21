@@ -1,6 +1,6 @@
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
 
-import { CharactersState } from "../types";
+import { CharactersState, Character } from "../types";
 
 const initialState: CharactersState = {
   characters: [],
@@ -22,11 +22,19 @@ const charactersSlice = createSlice({
     },
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
+      state.currentPage = 1;
+    },
+    updateCharacter: (state, action: PayloadAction<Character>) => {
+      const index = state.characters.findIndex((character) => character.url === action.payload.url);
+
+      if (index !== -1) {
+        state.characters[index] = action.payload;
+      }
     },
   },
 });
 
-export const { setCharacters, setCurrentPage, setSearchQuery } = charactersSlice.actions;
+export const { setCharacters, setCurrentPage, setSearchQuery, updateCharacter } = charactersSlice.actions;
 
 const store = configureStore({
   reducer: {
