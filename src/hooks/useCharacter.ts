@@ -1,23 +1,15 @@
 import { useEffect, useState } from "react";
 
-import charactersApi from "../services/charactersApi";
+import { useCharacterQuery } from "../services/charactersApi";
 import { Character } from "../types";
 
 export const useCharacter = (id: string) => {
-  const [character, setCharacter] = useState<Character | null>(null);
+  const { data, isLoading } = useCharacterQuery(id);
+  const [character, setCharacter] = useState<Character | undefined>(undefined);
 
   useEffect(() => {
-    const fetchCharacter = async () => {
-      try {
-        const data = await charactersApi.fetchCharacter(id);
-        setCharacter(data);
-      } catch (error) {
-        console.error("Error fetching character:", error);
-      }
-    };
+    setCharacter(data);
+  }, [data]);
 
-    fetchCharacter();
-  }, [id]);
-
-  return { character, setCharacter };
+  return { character, isLoading, setCharacter };
 };

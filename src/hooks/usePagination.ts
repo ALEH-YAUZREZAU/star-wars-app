@@ -8,9 +8,12 @@ export const usePagination = () => {
   const currentPage = useSelector((state: any) => state.characters.currentPage);
   const count = useSelector((state: any) => state.characters.count);
 
-  const handlePaggintionChange = useCallback((value: number) => {
-    dispatch(setCurrentPage(value));
-  }, []);
+  const handlePaggintionChange = useCallback(
+    (value: number) => {
+      dispatch(setCurrentPage(value));
+    },
+    [dispatch]
+  );
 
   return { currentPage, count, setCurrentPage: handlePaggintionChange };
 };

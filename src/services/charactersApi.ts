@@ -1,3 +1,4 @@
+import { useQuery } from "react-query";
 import api from "../services/api";
 import { Character } from "../types";
 
@@ -16,9 +17,10 @@ const fetchCharacter = async (id: string): Promise<Character> => {
   return response.data;
 };
 
-const charactersApi = {
-  fetchCharacters,
-  fetchCharacter,
+export const useCharactersQuery = (page?: number, search?: string) => {
+  return useQuery(["character", search, page], () => fetchCharacters(page, search));
 };
 
-export default charactersApi;
+export const useCharacterQuery = (id: string) => {
+  return useQuery(["character", id], () => fetchCharacter(id), { enabled: !!id });
+};

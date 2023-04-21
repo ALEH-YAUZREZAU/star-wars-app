@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Pagination as MuiPagination } from "@mui/material";
 
 interface IPagination {
