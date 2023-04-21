@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Pagination as MuiPagination } from "@mui/material";
 
 interface IPagination {
@@ -7,7 +7,7 @@ interface IPagination {
   currentPage: number;
 }
 
-const Pagination: React.FC<IPagination> = (props) => {
+const Pagination: React.FC<IPagination> = memo((props) => {
   const { onChange, count, currentPage } = props;
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -28,6 +28,6 @@ const Pagination: React.FC<IPagination> = (props) => {
       sx={{ mt: 4, mb: 4, justifyContent: "center", display: "flex" }}
     />
   );
-};
+});
 
 export default Pagination;
