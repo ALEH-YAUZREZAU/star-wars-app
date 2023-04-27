@@ -10,8 +10,6 @@ const NetworkErrorContext = createContext<NetworkErrorContextValue | undefined>(
 
 const NetworkErrorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [error, setError] = useState<Error | null>(null);
-
-  console.log("NetworkErrorProvider", error);
   return (
     <NetworkErrorContext.Provider value={{ setError }}>
       {error && (
