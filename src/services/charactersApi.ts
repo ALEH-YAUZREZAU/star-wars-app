@@ -1,4 +1,6 @@
 import { useQuery } from "react-query";
+import { useNetworkError } from "../providers/NetworkError";
+
 import api from "../services/api";
 import { Character } from "../types";
 
@@ -23,9 +25,22 @@ const fetchCharacter = async (id: string): Promise<Character> => {
 };
 
 export const useCharactersQuery = ({ page, search }: ICharactersParams) => {
-  return useQuery(["character", search, page], () => fetchCharacters({ page, search }));
+  const { setError } = useNetworkError();
+
+  return useQuery(["character", search, page], () => fetchCharacters({ page, search }), {
+    onError: (error: Error) => {
+      setError(error);
+    },
+  });
 };
 
 export const useCharacterQuery = (id: string) => {
-  return useQuery(["character", id], () => fetchCharacter(id), { enabled: !!id });
+  const { setError } = useNetworkError();
+
+  return useQuery(["character", id], () => fetchCharacter(id), {
+    enabled: !!id,
+    onError: (error: Error) => {
+      setError(error);
+    },
+  });
 };

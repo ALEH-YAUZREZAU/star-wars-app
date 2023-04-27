@@ -1,17 +1,17 @@
 ## About
 
-Используя стороннее API в качестве источника данных (пример: Star Wars API
-https://swapi.dev/), реализовать SPA приложение React и Typescript, состоящее из двух страниц.
-На главной странице отобразить список или карточки персонажей, к списку добавить
-возможность пагинации. На главной странице должен быть реализован поиск персонажей.
-Реализовать страницу с подробной информацией по выбранному персонажу.
+Using a third-party API as a data source (example: Star Wars API
+https://swapi.dev /), implement a React and Typescript SPA application consisting of two pages.
+On the main page, display a list or character cards, add
+the possibility of pagination to the list. The search for characters should be implemented on the main page.
+Implement a page with detailed information on the selected character.
 
-Плюсы:
+Positive:
 
-- Аккуратная верстка
-- Использование UI фреймворка (Material, Ant, Bootstrap и т.п.)
-  В качестве дополнительного задания:
-- Для работы с данными использовать хранилище Redux
-- Редактировать информацию о персонаже локально, без отправки на сервер
-- Написать тесты
-- Фильтрация на главной странице
+- Neat layout
+- - Using the UI framework (Material, Ant, Bootstrap, etc.)
+    as an additional task:
+- To work with data, use the Redux storage
+- Edit character information locally, without sending it to the server
+- Write tests
+- Filtering on the main page
